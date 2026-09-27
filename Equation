@@ -1,0 +1,22 @@
+https://codeforces.com/edu/course/2/lesson/6/2/practice/contest/283932/problem/E
+
+
+#include<bits/stdc++.h>
+using namespace std;
+bool check(long double x, long double c){
+    return x*x + sqrt(x) >= c;
+}
+int main(){
+    long double c; cin>>c;
+    long double l = 0.0 , h = sqrt(c);
+       while(h -l > 1e-6){
+       long  double mid = l + (h-l)/2;
+         if(check(mid,c)){
+            h = mid;
+         }else{
+            l = mid;
+         }
+       }
+
+       cout<<fixed<<setprecision(6)<<l<<endl;
+}
