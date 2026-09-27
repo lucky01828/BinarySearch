@@ -1,0 +1,40 @@
+/*
+Problem_link:_ https://codeforces.com/edu/course/2/lesson/6/2/practice/contest/283932/problem/C
+Problem:_ Make n copy with the help of two printers
+ 
+idea:_
+        guess the ans with the help of mid and check check function if we can n-1
+        papers in t times , then go min ans mean h = mid-1, in last calculate for 1st
+        copy 
+
+
+
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+bool check(int x, int y, int n, long long  t){
+    return (t / x) + (t / y) >= n - 1;
+}
+
+int main(){
+
+    int n, x, y;
+    cin >> n >> x >> y;
+
+   long long  l = 1, h = max(x, y) * n;
+
+    long long  ans = 0;
+    while (l <= h){
+       long long  mid = l + (h - l) / 2;
+        if (check(x, y, n, mid)){
+            ans = mid;
+            h = mid - 1;
+        }else{
+            l = mid + 1;
+        }
+    }
+
+    cout << ans + min(x,y)<< endl;
+}
