@@ -1,0 +1,42 @@
+/*
+Problem link :_ https://codeforces.com/edu/course/2/lesson/6/2/practice/contest/283932/problem/B
+
+Problem:_ Given some len of rope , we need to cut into exactly k pieces with max len
+
+             This que is based on binary search on real no so had deal with floating 
+             numbers...........
+
+
+             So main concern is to find search space, so search space will the 
+             min len poss = 1 to max(arr) 
+
+             while(h-l > 1e-6) becoz acc to que need precision....
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+bool check(vector<int>arr , double x , int k ){
+    int cnt =0;
+    for(int i =0;i<arr.size();i++){
+        cnt += (int)(arr[i]/x);
+        if(cnt>=k) return true;
+    }
+    return false;
+}
+int main(){
+    int n ,k;
+    cin>>n>>k;
+    vector<int> arr(n);
+    for(int i=0;i<n;i++) cin>>arr[i];
+
+    double l = 0.0 , h = *max_element(arr.begin(), arr.end());
+     while(h-l > 1e-6){
+        double mid = l + (h-l)/2;
+        if(check(arr,mid,k)){
+            l = mid;
+        }else{
+            h = mid;
+        }
+     }
+     cout<<fixed<<setprecision(6)<<l<<endl;
+}   
