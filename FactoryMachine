@@ -1,0 +1,34 @@
+Problem_link:_https://cses.fi/alon/task/1620
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n , t; cin>>n>>t;
+    vector<int> arr(n);
+    for(int i =0;i<n;i++) cin>>arr[i];
+
+
+     long long mx = *min_element(arr.begin(), arr.end()) * 1LL;
+     long long ans = 0;
+ 
+     long long l = 1 , h =  mx*t;
+
+     while(l<=h){
+        long long mid = l + (h-l)/2;
+        long long cur = 0;
+
+        for(int i= 0 ;i<n;i++){
+           cur+= mid/arr[i];
+           if(cur >= t) break;
+        }
+
+        if(cur>=t){
+            ans = mid;
+          h = mid-1;
+        }else{
+            l = mid+1;
+        }
+     }
+     cout<<ans<<endl;
+}
+ 
+*/
